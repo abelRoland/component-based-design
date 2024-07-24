@@ -1,0 +1,8 @@
+li {
+  padding: 10px;
+}
+
+.listActive {
+  background-color: aqua;
+  border-radius: 10px;
+}
