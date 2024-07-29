@@ -1,25 +1,12 @@
-import { useState } from 'react'
 import { ListItem } from './ListItem'
-
-import { pokemonList } from '../../api/helper'
+import { usePokemon } from '../../contexts/pokemonContext'
 
 export const List = () => {
-  const [, setActive] = useState(pokemonList)
+  const { pokemons, handleActive } = usePokemon()
 
-  const handleActive = (index) => {
-    let i
-    for (i = 0; i < pokemonList.length; i++) {
-      if (i === index) {
-        pokemonList[i].isActive = true
-      } else {
-        pokemonList[i].isActive = false
-      }
-      setActive([...pokemonList])
-    }
-  }
   return (
     <ul>
-      {pokemonList.map((item, i) => (
+      {pokemons.map((item, i) => (
         <ListItem
           listItem={item.name}
           isActive={item.isActive}

@@ -2,18 +2,20 @@ import { useState, useEffect } from 'react'
 import { Button } from '../Button'
 import Form from 'react-bootstrap/Form'
 import Alert from 'react-bootstrap/Alert'
-import { pokemonList } from '../../api/helper'
 
 import './style.css'
 
-export const PokemonForm = () => {
+export const PokemonForm = ({ pokemonList }) => {
   const [value, setValue] = useState('')
   const [errors, setErrors] = useState([])
   const [pokemons, setPokemons] = useState([])
+  const [avatar, setAvatar] = useState([])
+  const [avatarIndex, setAvatarIndex] = useState(0)
   const [pokemonSelect, setPokemon] = useState(false)
 
   useEffect(() => {
     setPokemons(pokemonList.map((a) => a.name))
+    setAvatar(pokemonList.map((a) => a.src))
     return () => setPokemons([])
   }, [])
 
@@ -21,6 +23,7 @@ export const PokemonForm = () => {
     if (!pokemons.includes(valueToCheck)) {
       setErrors(['Pokemon not found'])
     } else {
+      setAvatarIndex(pokemons.indexOf(valueToCheck))
       setErrors([])
     }
   }
@@ -57,7 +60,7 @@ export const PokemonForm = () => {
           {`You can submit the pokemon: ${value}`}
         </Alert>
       )}
-      {pokemonSelect && <img src={pokemonList[0].src} alt={value} />}
+      {pokemonSelect && <img src={pokemonList[avatarIndex].src} alt={value} />}
     </>
   )
 }
