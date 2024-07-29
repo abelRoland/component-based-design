@@ -1,12 +1,11 @@
 import { Home } from './Pages/Home'
-import { ErrorContextProvider } from './contexts'
-import PokemonProvider from './contexts/PokemonContext'
+import { ErrorContextProvider, PokemonProvider } from './contexts'
 export const App = () => {
   return (
-    <PokemonProvider>
-      <ErrorContextProvider>
+    <ErrorContextProvider>
+      <PokemonProvider>
         <Home />
-      </ErrorContextProvider>
-    </PokemonProvider>
+      </PokemonProvider>
+    </ErrorContextProvider>
   )
 }

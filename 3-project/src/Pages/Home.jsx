@@ -3,9 +3,8 @@ import { Header, AsideMenu, Footer, Section, Errors } from '../components'
 import { usePokemon } from '../contexts/PokemonContext'
 
 export const Home = () => {
-  const { list, isLoading } = usePokemon()
-  const [selectId, setSelectId] = useState(null)
-  const showSection = selectId || selectId === 0
+  const { list, isLoading, selectId, setSelectId, showSection } = usePokemon()
+
   return (
     <>
       <Errors />
