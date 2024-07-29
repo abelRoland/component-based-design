@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Button } from '../Button'
+import { usePokemon } from '../../contexts/pokemonContext'
 import Form from 'react-bootstrap/Form'
 import Alert from 'react-bootstrap/Alert'
 
@@ -9,9 +10,10 @@ export const PokemonForm = ({ pokemonList }) => {
   const [value, setValue] = useState('')
   const [errors, setErrors] = useState([])
   const [pokemons, setPokemons] = useState([])
-  const [avatar, setAvatar] = useState([])
+  const [, setAvatar] = useState([])
   const [avatarIndex, setAvatarIndex] = useState(0)
   const [pokemonSelect, setPokemon] = useState(false)
+  const { handleActive } = usePokemon()
 
   useEffect(() => {
     setPokemons(pokemonList.map((a) => a.name))
@@ -37,6 +39,7 @@ export const PokemonForm = ({ pokemonList }) => {
         onSubmit={(e) => {
           e.preventDefault()
           setPokemon(true)
+          handleActive(avatarIndex)
         }}
       >
         <Form.Group>
@@ -51,7 +54,7 @@ export const PokemonForm = ({ pokemonList }) => {
             }}
           />
         </Form.Group>
-        <Button type="submit" disabled={!isCorrect} label="Submit" />
+        <Button type="submit" disabled={!isCorrect} label="Activate" />
       </Form>
 
       {hasError && <Alert variant="danger">{errors[0]}</Alert>}

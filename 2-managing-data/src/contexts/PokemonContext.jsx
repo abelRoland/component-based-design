@@ -15,13 +15,13 @@ export default function PokemonProvider({ children }) {
 
   const handleActive = (index) => {
     let i
-    for (i = 0; i < pokemonList.length; i++) {
+    for (i = 0; i < pokemons.length; i++) {
       if (i === index) {
-        pokemonList[i].isActive = true
+        pokemons[i].isActive = true
       } else {
-        pokemonList[i].isActive = false
+        pokemons[i].isActive = false
       }
-      setActive([...pokemonList])
+      setActive([...pokemons])
     }
   }
 
