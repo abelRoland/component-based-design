@@ -1,38 +1,44 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 
-import { ErrorCode } from '../constants';
-import { useErrorsContext } from '../contexts';
+import { ErrorCode } from '../constants'
+import { useErrorsContext } from '../contexts'
 
 export const usePokemon = (pokemonId) => {
-  const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const { setError } = useErrorsContext();
+  const [data, setData] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const { setError } = useErrorsContext()
 
-  const fetchPokemon = () => {
-    setData(null);
-    setIsLoading(true);
-    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
-      .then((response) => {
-        if (response.ok) return response.json();
+  useEffect(() => {
+    let isMounted = true
 
-        throw new Error(ErrorCode.POKEMON_NOT_FOUND);
-      })
-      .then((response) => {
-        setTimeout(() => {
-          setData(response);
-          setIsLoading(false);
-        }, 500);
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        setError(error.message);
-      });
-  };
+    const fetchPokemon = () => {
+      setData(null)
+      setIsLoading(true)
+      fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+        .then((response) => {
+          if (response.ok) return response.json()
 
-  useEffect(fetchPokemon, [pokemonId]);
+          throw new Error(ErrorCode.POKEMON_NOT_FOUND)
+        })
+        .then((response) => {
+          setData(response)
+          setIsLoading(false)
+        })
+        .catch((error) => {
+          setIsLoading(false)
+          setError(error.message)
+        })
+    }
+
+    if (isMounted) {
+      fetchPokemon()
+    }
+
+    return () => (isMounted = false)
+  }, [pokemonId])
 
   return {
     data,
     isLoading,
-  };
-};
+  }
+}
