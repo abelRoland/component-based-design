@@ -1,7 +1,7 @@
 export const pokemonList = [
   {
     name: 'Pikachu',
-    src: 'https://archives.bulbagarden.net/media/upload/4/4a/0025Pikachu.png',
+    src: 'https://upload.wikimedia.org/wikipedia/en/a/a6/Pok%C3%A9mon_Pikachu_art.png',
     isActive: true,
   },
   {
