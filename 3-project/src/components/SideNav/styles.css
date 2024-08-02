@@ -1,0 +1,16 @@
+ul {
+  margin: 10px;
+  padding: 0;
+  border: 1px solid grey;
+  border-radius: 10px;
+}
+
+li {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.listActive {
+  background-color: #a8422d;
+  border-radius: 10px;
+}
