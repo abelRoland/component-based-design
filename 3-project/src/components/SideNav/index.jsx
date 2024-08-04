@@ -1,10 +1,9 @@
-import { getIdFromUrl } from '../../utils'
 import { usePokemon } from '../../contexts'
 
 import './styles.css'
 
-export const SideNav = ({ list, onIdSelected }) => {
-  const { selectId } = usePokemon()
+export const SideNav = ({ list }) => {
+  const { selectId, setSelectId } = usePokemon()
 
   return (
     <aside>
@@ -13,7 +12,7 @@ export const SideNav = ({ list, onIdSelected }) => {
           <li
             key={item.url}
             className={selectId === i + 1 ? 'listActive' : undefined}
-            onClick={() => onIdSelected(getIdFromUrl(item.url))}
+            onClick={() => setSelectId(i + 1)}
           >
             {item.name}
           </li>

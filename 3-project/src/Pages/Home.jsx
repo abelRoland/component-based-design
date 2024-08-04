@@ -1,19 +1,18 @@
 import { Header, SideNav, Footer, Section, Errors } from '../components'
 import { usePokemon } from '../contexts/PokemonContext'
 
+import './styles.css'
+
 export const Home = () => {
-  const { list, selectId, setSelectId, showSection } = usePokemon()
+  const { list, setSelectId, showSection } = usePokemon()
 
   return (
-    <>
+    <div className="container">
       <Errors />
       <Header />
-      <main className="main">
-        <SideNav list={list} onIdSelected={(id) => setSelectId(id)} />
-
-        {showSection && <Section selectedPokemonId={selectId} />}
-      </main>
+      <SideNav list={list} onIdSelected={(id) => setSelectId(id)} />
+      {showSection && <Section />}
       <Footer />
-    </>
+    </div>
   )
 }

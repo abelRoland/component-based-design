@@ -8,12 +8,10 @@ export const App = () => {
     { path: 'edit/:pokemonId', element: <Edit /> },
   ])
   return (
-    <>
-      <ErrorContextProvider>
-        <PokemonProvider>
-          <RouterProvider router={router} />
-        </PokemonProvider>
-      </ErrorContextProvider>
-    </>
+    <ErrorContextProvider>
+      <PokemonProvider>
+        <RouterProvider router={router} />
+      </PokemonProvider>
+    </ErrorContextProvider>
   )
 }

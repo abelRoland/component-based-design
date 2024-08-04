@@ -3,24 +3,28 @@ import { Link } from 'react-router-dom'
 
 import './Section.styles.css'
 
-export const Section = ({ selectedPokemonId }) => {
-  const { data, isLoading } = usePokemon(selectedPokemonId)
+export const Section = () => {
+  const { data, selectId, isLoading } = usePokemon()
 
   if (isLoading)
     return (
-      <section className="section">
+      <main className="section">
         <p>loading</p>
-      </section>
+      </main>
     )
 
   if (!data) return null
 
   return (
-    <section className="section">
-      Pokemon id: {selectedPokemonId}
-      Pokemon name: {data.name}
-      <img alt={data.name} src={data.sprites.front_default} />
+    <main>
+      <p>Pokemon id: {selectId}</p>
+      <p>Pokemon name: {data.name}</p>
+      <img
+        className="cardImage"
+        alt={data.name}
+        src={data.sprites.front_default}
+      />
       <Link to={`/edit/${data.id}`}>{`Edit ${data.name}`}</Link>
-    </section>
+    </main>
   )
 }

@@ -11,7 +11,7 @@ export const Edit = () => {
   return (
     <>
       <h1>{`Edit Pokemon ${data.name}`} </h1>
-      <Link to="/">Back Home Link</Link>
+      <Link to="/">Back Home</Link>
     </>
   )
 }
