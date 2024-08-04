@@ -1,11 +1,19 @@
-import { Home, Edit, NotFound } from './Pages'
+import { Home, Edit } from './Pages'
+import { ErrorContextProvider, PokemonProvider } from './contexts'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
-const router = createBrowserRouter([
-  { path: '/', element: <Home />, errorElement: <NotFound /> },
-  { path: '/edit/:pokemonId', element: <Edit /> },
-])
-
 export const App = () => {
-  return <RouterProvider router={router} />
+  const router = createBrowserRouter([
+    { path: '/', element: <Home /> },
+    { path: 'edit', element: <Edit /> },
+  ])
+  return (
+    <>
+      <ErrorContextProvider>
+        <PokemonProvider>
+          <RouterProvider router={router} />
+        </PokemonProvider>
+      </ErrorContextProvider>
+    </>
+  )
 }
