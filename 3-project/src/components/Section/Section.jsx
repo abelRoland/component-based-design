@@ -1,4 +1,5 @@
 import { usePokemon } from '../../contexts/PokemonContext'
+import { Link } from 'react-router-dom'
 
 import './Section.styles.css'
 
@@ -19,6 +20,7 @@ export const Section = ({ selectedPokemonId }) => {
       Pokemon id: {selectedPokemonId}
       Pokemon name: {data.name}
       <img alt={data.name} src={data.sprites.front_default} />
+      <Link to={`/edit/${data.id}`}>{`Edit ${data.name}`}</Link>
     </section>
   )
 }
